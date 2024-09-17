@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
 LABEL maintainer="Steven Braun <steven.braun.mz@gmail.com>"
 LABEL repository="https://github.com/braun-steven/activitywatch-docker"
