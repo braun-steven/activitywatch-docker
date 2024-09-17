@@ -22,8 +22,8 @@ RUN rm activitywatch-v${VERSION}-linux-x86_64.zip
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN chmod +x ./activitywatch/aw-server
+RUN chmod +x ./activitywatch/aw-server/aw-server
 
 EXPOSE 5600
 
-CMD ["/app/activitywatch/aw-server", "--host", "0.0.0.0"]
+CMD ["/app/activitywatch/aw-server/aw-server", "--host", "0.0.0.0"]
