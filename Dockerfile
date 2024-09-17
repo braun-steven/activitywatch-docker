@@ -1,20 +1,15 @@
-FROM debian:stretch-slim
+FROM debian:bookworm-slim
 
-LABEL maintainer="Kerem Bozdas <krmbzds.github@gmail.com>"
-LABEL repository="https://github.com/krmbzds/docker-activitywatch"
+LABEL maintainer="Steven Braun <steven.braun.mz@gmail.com>"
+LABEL repository="https://github.com/braun-steven/activitywatch-docker/edit/master/Dockerfile"
 
 RUN mkdir /app
 WORKDIR /app
 
 RUN apt-get -qq -y update \
   && apt-get install -qq -y --no-install-recommends ca-certificates unzip wget \
-  && wget -q -O - https://api.github.com/repos/activitywatch/activitywatch/releases \
-  | grep "https" \
-  | grep "linux-x86_64" \
-  | head -1 \
-  | cut -d : -f 2,3 \
-  | tr -d '", ' \
-  | wget -q -i - \
+  && wget $(curl -s https://api.github.com/repos/activitywatch/activitywatch/releases/latest | grep "browser_download_url.*li
+nux-x86_64.zip" | cut -d '"' -f 4) \
   && unzip ./activitywatch*.zip \
   && rm ./activitywatch*.zip \
   && chmod +x ./activitywatch/aw-server \
